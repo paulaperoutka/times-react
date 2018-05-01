@@ -9,6 +9,7 @@ const db = require("../models");
 module.exports = {
 	findAll: function(req, res) {
 		db.Article
+			//not necessary for find, but in case of future customization for filter; query is object propert sent from client side
 			.find(req.query)
 			.sort({ date: -1 })
 			.then(dbModel => res.json(dbModel))
@@ -17,7 +18,7 @@ module.exports = {
 	},
 	findById: function(req, res) {
 		db.Article
-			//since passing though ID as parameter
+			//since passing through ID as parameter
 			.findById(req.params.id)
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err))
