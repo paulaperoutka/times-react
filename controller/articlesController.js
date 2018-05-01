@@ -23,24 +23,24 @@ module.exports = {
 			.catch(err => res.status(422).json(err))
 	},
 	create: function(req, res){
-		db.Book
+		db.Article
 			.create(req.body)
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err))
 	}, 
 	update: function(req, res){
-		db.Book
-			//looking for object with ID field in mongodb format, then past request.body to update
+		db.Article
+			//looking for object with ID field in mongodb format, then pass request.body to update
 			.findOneAndUpdate({_id: req.params.id}, req.body)
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err))
 	}, 
 	delete: function(req, res){
-		db.Book
+		db.Article
 			.findById({_id: req.params.id})
 			//promise chaining
 			.then(dbModel => dbModel.remove())
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err))
 	}
-}
+};
