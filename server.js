@@ -22,6 +22,9 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+//deployment db or local mongodb
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/timesreact");
+
 //start the application!
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
